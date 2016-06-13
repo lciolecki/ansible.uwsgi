@@ -35,7 +35,7 @@ uwsgi_configs_defaults:
 uwsgi_configs: {}
 
 # Vasssals configuration
-uwsgi_emperor_mode: true
+uwsgi_emperor_mode: false
 uwsgi_vassals_available_dir: /etc/uwsgi/vassals-available
 uwsgi_vassals_enabled_dir:   /etc/uwsgi/vassals-enabled
 uwsgi_vassals: {}
