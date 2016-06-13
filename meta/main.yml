@@ -1,0 +1,21 @@
+---
+
+galaxy_info:
+  author: lciolecki
+  description: Ansible role to install and manage uWSGI
+  version: 0.0.1
+  license: MIT
+  min_ansible_version: 1.9
+
+  platforms:
+    - name: Debian
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+
+  categories:
+    - python
+    - uwsgi
+
+dependencies: []

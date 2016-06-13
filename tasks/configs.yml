@@ -1,0 +1,34 @@
+---
+
+- name: Create uWSGI directories
+  action:
+    module: file
+    state: directory
+    dest: "{{ item }}"
+    owner: "{{ uwsgi_user }}"
+    group: "{{ uwsgi_group }}"
+    mode: 0755
+  with_items:
+    - "{{ uwsgi_config_dir }}"
+    - "{{ uwsgi_socket_dir }}"
+    - "{{ uwsgi_log_dir }}"
+
+- name: Create uWSGI configuration file
+  action:
+    module: template
+    src: "uwsgi.ini.j2"
+    dest: "{{ uwsgi_config_dir }}/uwsgi.ini"
+    owner: "{{ uwsgi_user }}"
+    group: "{{ uwsgi_group }}"
+    mode: 0755
+  notify: restart uWSGI service
+
+- name: Create the uWSGI upstart script
+  action:
+    module: template
+    src: "upstart.uwsgi.conf.j2"
+    dest: "{{ uwsgi_upstart_service_path }}"
+    owner: "{{ uwsgi_user }}"
+    group: "{{ uwsgi_group }}"
+    mode: 0755
+  notify: restart uWSGI service

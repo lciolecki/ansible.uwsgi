@@ -1,0 +1,46 @@
+---
+
+# uWSGI source path
+uwsgi_source: "/usr/local/bin/uwsgi"
+
+# uWSGI version
+uwsgi_version: '2.0.13.1'
+
+# uWSGI user and group
+uwsgi_user: "www-data"
+uwsgi_group: "root"
+
+# Configuration directory for uWSGI
+uwsgi_config_dir: /etc/uwsgi
+
+# Log prefix
+uwsgi_log_dir: /var/log/uwsgi
+
+# Logfile path
+uwsgi_logfile: "{{ uwsgi_log_dir }}/uwsgi.log"
+
+# Sockets directory
+uwsgi_socket_dir: /var/run/uwsgi
+
+# Master fifo
+uwsgi_master_fifo: "{{ uwsgi_socket_dir }}/master.fifo"
+
+# uWSGI default configuration
+uwsgi_configs_defaults:
+  uid: "{{ uwsgi_user }}"
+  gid: "{{ uwsgi_group }}"
+  master-fifo: "{{ uwsgi_master_fifo }}"
+
+# uWSGI external configuration
+uwsgi_configs: {}
+
+# Vasssals configuration
+uwsgi_emperor_mode: true
+uwsgi_vassals_available_dir: /etc/uwsgi/vassals-available
+uwsgi_vassals_enabled_dir:   /etc/uwsgi/vassals-enabled
+uwsgi_vassals: {}
+
+# UpStart uWsgi configuration
+uwsgi_service_name: "uwsgi-app"
+uwsgi_upstart_timeout_kill: 1800
+uwsgi_upstart_service_path: "/etc/init/{{ uwsgi_service_name }}.conf"

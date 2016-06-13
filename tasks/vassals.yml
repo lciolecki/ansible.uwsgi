@@ -1,0 +1,34 @@
+---
+
+- name: Create uWSGI vassals directories
+  action:
+    module: file
+    state: directory
+    dest: "{{ item }}"
+    owner: "{{ uwsgi_user }}"
+    group: "{{ uwsgi_group }}"
+    mode: 0755
+  with_items:
+    - "{{ uwsgi_vassals_available_dir }}"
+    - "{{ uwsgi_vassals_enabled_dir }}"
+
+- name: Create uWSGI vassals configuration
+  action:
+    module: template
+    src: "vassals.ini.j2"
+    dest: "{{ uwsgi_vassals_available_dir }}/{{ item.key }}.ini"
+    owner: "{{ uwsgi_user }}"
+    group: "{{ uwsgi_group }}"
+    mode: 0755
+  with_dict: "{{ uwsgi_vassals }}"
+
+- name: Enable uWSGI vassals configuration
+  action:
+    module: file
+    state: link
+    src: "{{ uwsgi_vassals_available_dir }}/{{ item.key }}.ini"
+    dest: "{{ uwsgi_vassals_enabled_dir }}/{{ item.key }}.ini"
+    owner: "{{ uwsgi_user }}"
+    group: "{{ uwsgi_group }}"
+  when: item.value.enabled | default(None) != None
+  with_dict: "{{ uwsgi_vassals }}"

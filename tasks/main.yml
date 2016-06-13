@@ -1,0 +1,11 @@
+---
+
+- include: install.yml
+  tags: [uwsgi, uwsgi.install]
+
+- include: configs.yml
+  tags: [uwsgi, uwsgi.configs]
+
+- include: vassals.yml
+  when: uwsgi_emperor_mode and uwsgi_vassals
+  tags: [uwsgi, uwsgi.vassals]

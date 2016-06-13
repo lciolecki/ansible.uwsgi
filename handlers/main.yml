@@ -1,0 +1,7 @@
+---
+
+- name: "restart uWSGI service"
+  action:
+    module: service
+    name: "{{ uwsgi_service_name }}"
+    state: restarted

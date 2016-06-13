@@ -1,0 +1,14 @@
+---
+
+- name: Verify uWSGI version already installed
+  command: "{{ uwsgi_source }} --version"
+  ignore_errors: yes
+  register: versions
+  changed_when: "versions.rc != 0 or versions.stdout != uwsgi_version"
+
+- name: Install uWSGI
+  action:
+    module: pip
+    name: uwsgi
+    version: "{{ uwsgi_version }}"
+  when: versions.changed
