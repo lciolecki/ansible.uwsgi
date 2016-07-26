@@ -11,4 +11,5 @@
     module: pip
     name: uwsgi
     version: "{{ uwsgi_version }}"
+    virtualenv_python: "{{ uwsgi_virtualenv_python }}"
   when: versions.changed
