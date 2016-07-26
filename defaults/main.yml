@@ -1,7 +1,7 @@
 ---
 
 # The Python executable
-uwsgi_virtualenv_python: "3.4"
+uwsgi_virtualenv_python: "python3.4"
 
 # uWSGI source path
 uwsgi_source: "/usr/local/bin/uwsgi"
