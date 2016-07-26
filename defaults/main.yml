@@ -1,7 +1,13 @@
 ---
 
-# The Python executable
-uwsgi_virtualenv_python: "python3.4"
+# The explicit executable or a pathname to the executable to be used to run pip for a specific version of Python installed in the system.
+uwsgi_executable: "pip3.4"
+
+# The Python executable used for creating the virtual environment. For example python3.4, python2.7.
+uwsgi_virtualenv_python: null
+
+# An optional path to a virtualenv directory to install into. It cannot be specified together with the 'executable' parameter.
+uwsgi_virtualenv: null
 
 # uWSGI source path
 uwsgi_source: "/usr/local/bin/uwsgi"

@@ -11,5 +11,7 @@
     module: pip
     name: uwsgi
     version: "{{ uwsgi_version }}"
-    virtualenv_python: "{{ uwsgi_virtualenv_python }}"
+    executable: "{{ uwsgi_executable | default(omit) }}"
+    virtualenv_python: "{{ uwsgi_virtualenv_python | default(omit) }}"
+    virtualenv: "{{ uwsgi_virtualenv | default(omit) }}"
   when: versions.changed
