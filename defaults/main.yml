@@ -13,7 +13,7 @@ uwsgi_executable: "pip3.4"
 uwsgi_source: "/usr/local/bin/uwsgi"
 
 # uWSGI version
-uwsgi_version: '2.0.13.1'
+uwsgi_version: '2.0.13'
 
 # uWSGI user and group
 uwsgi_user: "www-data"
@@ -50,6 +50,7 @@ uwsgi_vassals_enabled_dir:   /etc/uwsgi/vassals-enabled
 uwsgi_vassals: {}
 
 # UpStart uWsgi configuration
-uwsgi_service_name: "uwsgi-app"
+uwsgi_upstart_enabled: true
+uwsgi_service_name: "uwsgi"
 uwsgi_upstart_timeout_kill: 1800
 uwsgi_upstart_service_path: "/etc/init/{{ uwsgi_service_name }}.conf"

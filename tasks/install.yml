@@ -15,3 +15,4 @@
     virtualenv_python: "{{ uwsgi_virtualenv_python | default(omit) }}"
     virtualenv: "{{ uwsgi_virtualenv | default(omit) }}"
   when: versions.changed
+  notify: "start uWSGI service"

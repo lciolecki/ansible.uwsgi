@@ -24,6 +24,7 @@
   notify: restart uWSGI service
 
 - name: Create the uWSGI upstart script
+  when: "{{ uwsgi_upstart_enabled }}"
   action:
     module: template
     src: "upstart.uwsgi.conf.j2"
@@ -31,4 +32,3 @@
     owner: "{{ uwsgi_user }}"
     group: "{{ uwsgi_group }}"
     mode: 0755
-  notify: restart uWSGI service
