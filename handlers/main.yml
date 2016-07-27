@@ -1,12 +1,14 @@
 ---
 
 - name: "restart uWSGI service"
+  when: " {{ uwsgi_upstart_enabled }}"
   action:
     module: service
     name: "{{ uwsgi_service_name }}"
     state: restarted
 
 - name: "start uWSGI service"
+  when: " {{ uwsgi_upstart_enabled }}"
   action:
     module: service
     name: "{{ uwsgi_service_name }}"
